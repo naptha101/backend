@@ -37,6 +37,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -65,6 +66,7 @@ app.post('/images-multiple', upload.array('files'), async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 });
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/users', router);
 
